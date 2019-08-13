@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     language: function() {
-      if(this.$store.state.language == 'EN') {
-        return 'English'
-      } else if (this.$store.state.language == 'DK') {
+      if (this.$store.state.language == 'DK') {
         return 'Danish'
+      } else {
+        return 'English'
       }
     }
   }
