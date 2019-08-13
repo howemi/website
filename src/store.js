@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    language: "EN"
   },
   mutations: {
-
+    mutateStateField(state, payload) {
+      for (var field in payload) {
+        Vue.set(state, field, payload[field])
+      }
+    }
   },
   actions: {
-
+    
   }
 })
