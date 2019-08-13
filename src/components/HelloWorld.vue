@@ -1,6 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <div v-if="$store.state.language === 'DK'">
+      <img class="flag" src="https://cdn.rawgit.com/hjnilsson/country-flags/master/svg/dk.svg">
+      <h1>Hej</h1>
+    </div>
+    <div v-else-if="$store.state.language === 'EN'">
+      <img class="flag" src="https://cdn.rawgit.com/hjnilsson/country-flags/master/svg/us.svg">
+      <h1>Hello</h1>
+    </div>
+    
     <p>Your selected language is: {{language}}</p>
   </div>
 </template>
@@ -25,6 +33,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.flag {
+  height: 20px;
+}
 h3 {
   margin: 40px 0 0;
 }
