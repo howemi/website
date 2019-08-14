@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <Navigation/>
-    <div id="nav">
-    </div>
-    <router-view/>
+    <div class="spacer"></div>
+    <router-view class="test"/>
   </div>
 </template>
 
@@ -13,20 +12,36 @@ import Navigation from '@/components/Navigation.vue'
 export default {
   components: {
     Navigation
+  },
+  mounted: function() {
+    let date = new Date()
+    let time = date.getHours()
+    if(time < 12) {
+      document.title = "Good Morning!"
+    } else if (time >= 12 && time < 18) {
+      document.title = "Good Afternoon"
+    } else  {
+      document.title = "Good Evening"
+    }
   }
 
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Arvo|Montserrat&display=swap');
+h1 {
+  font-family: 'Arvo';
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-#nav {
+
+.spacer {
   padding: 30px;
 }
 

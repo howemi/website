@@ -1,15 +1,19 @@
 <template>
   <div class="hello">
     <div v-if="$store.state.language === 'DK'">
-      <img class="flag" src="https://cdn.rawgit.com/hjnilsson/country-flags/master/svg/dk.svg">
+      <img class="flag my-3" src="../assets/flags/DK.svg">
       <h1>Hej</h1>
     </div>
     <div v-else-if="$store.state.language === 'EN'">
-      <img class="flag" src="https://cdn.rawgit.com/hjnilsson/country-flags/master/svg/us.svg">
+      <img class="flag my-3" src="../assets/flags/EN.svg">
       <h1>Hello</h1>
     </div>
-    
-    <p>Your selected language is: {{language}}</p>
+    <div v-else-if="$store.state.language === 'ES'">
+      <img class="flag my-3" src="../assets/flags/ES.svg">
+      <h1>Hola</h1>
+    </div>
+
+    <p id="test">Your selected language is: {{language}}</p>
   </div>
 </template>
 
@@ -23,10 +27,12 @@ export default {
     language: function() {
       if (this.$store.state.language == 'DK') {
         return 'Danish'
+      } else if (this.$store.state.language == 'ES') {
+        return 'Spanish'
       } else {
         return 'English'
       }
-    }
+    },
   }
 }
 </script>
@@ -34,10 +40,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .flag {
-  height: 20px;
-}
-h3 {
-  margin: 40px 0 0;
+  height: 60px;
 }
 ul {
   list-style-type: none;
