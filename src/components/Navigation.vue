@@ -1,14 +1,21 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="danger" :sticky="true">
+  <transition>
+  <b-navbar ref="nav" toggleable="lg" type="dark" variant="danger" :sticky="true" v-scroll="mesid">
     <b-spinner small type="grow" class="mr-4 text-warning"></b-spinner>
-    <b-navbar-brand><router-link to="/">D E S I G N</router-link></b-navbar-brand>
+    <b-navbar-brand>
+      <router-link to="/">D E S I G N</router-link>
+    </b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
-        <b-nav-item><router-link to="/about">About</router-link></b-nav-item>
+        <b-nav-item>
+          <router-link to="/">Home</router-link>
+        </b-nav-item>
+        <b-nav-item>
+          <router-link to="/about">About</router-link>
+        </b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -19,27 +26,44 @@
         </b-nav-form>
 
         <b-nav-item-dropdown text="Region" right>
-          <b-dropdown-item v-for="lang in languages" :key="lang" @click="change_lang(lang)">{{ lang }}</b-dropdown-item>
+          <b-dropdown-item
+            v-for="lang in languages"
+            :key="lang"
+            @click="change_lang(lang)"
+          >{{ lang }}</b-dropdown-item>
         </b-nav-item-dropdown>
-
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
+  </transition>
 </template>
 
 <script>
 export default {
   data: function() {
     return {
-      languages: ['EN', 'DK', 'ES']
-    }
+      languages: ["EN", "DK", "ES"],
+      current_scroll: 0
+    };
   },
   methods: {
     change_lang(lang) {
-      this.$store.commit('mutateStateField', {language: lang})
+      this.$store.commit("mutateStateField", { language: lang });
+    },
+    mesid() {
+      let diff =  window.scrollY - this.current_scroll;
+
+      if (diff > 0) {
+        // Scrolling Down
+        this.$refs.nav.style.top = '-60px'
+      } else {
+        // Scrolling Up
+        this.$refs.nav.style.top = '0px'
+      }
+      this.current_scroll = window.scrollY;
     }
   }
-}
+};
 </script>
 
 <style>
