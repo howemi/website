@@ -2,13 +2,14 @@
   <transition>
   <b-navbar ref="nav" toggleable="lg" type="dark" variant="danger" :sticky="true" v-scroll="mesid">
     <b-spinner small type="grow" class="mr-4 text-warning"></b-spinner>
-    <b-navbar-brand>
+    <b-navbar-brand class="mr-0">
       <router-link to="/">D E S I G N</router-link>
     </b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
+      <div class="mx-2"></div>
       <b-navbar-nav>
         <b-nav-item>
           <router-link to="/">Home</router-link>

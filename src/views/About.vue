@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>Who made this?</h1>
-    <img src="../assets/images/splash.jpg" alt="">
+    <img src="../assets/images/splash.jpg" class="img-fluid" alt="Drinkin' a Coke">
     <h1>Not this guy...</h1>
     <p>But I did.</p>
     <p>My name is Michael Howe and I created this website.</p>

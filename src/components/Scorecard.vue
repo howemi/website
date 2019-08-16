@@ -3,7 +3,7 @@
     <b-container>
       <h1>Scorecard</h1>
       <table class="table">
-        <thead class="thead-dark">
+        <thead class="thead-dark" sticky>
           <tr>
             <th scope="col">#</th>
             <th v-for="(player, index) in players" :key="index" scope="col">
@@ -16,11 +16,18 @@
           <tr v-for="(round, row_index) in rounds" :key="row_index">
             <th scope="row">{{ row_index + 1 }}</th>
             <td v-for="(player, player_index) in players" :key="player_index">
-              <input class="form-control" v-model="scores[player_index][row_index]" />
+              <input type="number" class="form-control" v-model="scores[player_index][row_index]" />
+            </td>
+          </tr>
+          <tr v-if="players.length && rounds.length">
+            <th >Total</th>
+            <td v-for="(player, player_index) in players" :key="player_index">
+              <span>{{ total(player_index) }}</span>
             </td>
           </tr>
           <tr>
             <th @click="add_round" scope="row">Add round +</th>
+            
           </tr>
         </tbody>
       </table>
@@ -53,6 +60,14 @@ export default {
     },
     add_round() {
       this.rounds.push(this.rounds.length + 1);
+    },
+    total(index) {
+      let total = 0
+      this.scores[index].forEach(item => {
+        console.log(item)
+        total += parseInt(item)
+      })
+      return total
     }
   }
 };
