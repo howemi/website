@@ -19,6 +19,9 @@
         <b-nav-item>
           <router-link to="/scorecard">Scorecard</router-link>
         </b-nav-item>
+        <b-nav-item>
+          <router-link to="/credits">ALL THE CREDIT</router-link>
+        </b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
