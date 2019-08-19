@@ -1,33 +1,38 @@
 <template>
   <div>
-    <b-container>
-      <h1>Scorecard</h1>
+    <h1>Scorecard</h1>
+    <b-container class="px-0">
       <table class="table">
-        <thead class="thead-dark" sticky>
+        <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th v-for="(player, index) in players" :key="index" scope="col">
-              <Bro @add_name="add_player()" :index="index" @remove_index="remove_player(index)"></Bro>
+            <th scope="col" class="header header-top">#</th>
+            <th v-for="(player, index) in players" :key="index" class="header header-top" scope="col">
+              <Bro @add_name="add_player()" :index="index" class="header header-top" @remove_index="remove_player(index)"></Bro>
             </th>
-            <th scope="col" @click="add_player">Add Player</th>
+            <th scope="col" @click="add_player" class="header header-top">Add Player</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(round, row_index) in rounds" :key="row_index">
-            <th scope="row">{{ row_index + 1 }}</th>
+            <th scope="row" class="header header-left">{{ row_index + 1 }}</th>
             <td v-for="(player, player_index) in players" :key="player_index">
-              <input type="number" class="form-control" v-model="scores[player_index][row_index]" />
+              <form @submit.prevent="focus_next(player_index, row_index)">
+                <input
+                  type="number"
+                  class="text-center form-control score"
+                  v-model="scores[player_index][row_index]"
+                />
+              </form>
             </td>
           </tr>
           <tr v-if="players.length && rounds.length">
-            <th >Total</th>
-            <td v-for="(player, player_index) in players" :key="player_index">
+            <th class="header header-bottom header-left">Total</th>
+            <td v-for="(player, player_index) in players" class="header header-bottom" :key="player_index">
               <span>{{ total(player_index) }}</span>
             </td>
           </tr>
           <tr>
-            <th @click="add_round" scope="row">Add round +</th>
-            
+            <th @click="add_round" scope="row" class="header header-left">Add round +</th>
           </tr>
         </tbody>
       </table>
@@ -50,6 +55,11 @@ export default {
       scores: []
     };
   },
+  computed: {
+    inputs: function() {
+      return document.getElementsByClassName('score')
+    }
+  },
   methods: {
     add_player() {
       this.scores.push([]);
@@ -57,21 +67,57 @@ export default {
     },
     remove_player(index) {
       this.players.splice(index, 1);
+      this.scores.splice(index, 1);
     },
     add_round() {
       this.rounds.push(this.rounds.length + 1);
     },
     total(index) {
-      let total = 0
+      let total = 0;
       this.scores[index].forEach(item => {
-        console.log(item)
-        total += parseInt(item)
-      })
-      return total
+        total += parseInt(item);
+      });
+      return total;
+    },
+    focus_next($event, col, row) {
+      console.log(col);
+      console.log(row);
     }
   }
 };
 </script>
 
 <style>
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.header {
+  position: sticky;
+  position: -webkit-sticky;
+}
+.header-top {
+  top: -1px;
+  z-index: 20;
+}
+.header-bottom {
+  bottom: 0px;
+  background: white
+}
+.header-left {
+  left: 0px;
+  background: lightgray;
+  z-index: 10;
+}
+
+.container {
+  overflow-x: auto;
+  max-height: 500px;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 </style>

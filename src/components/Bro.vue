@@ -1,15 +1,14 @@
 <template>
   <div @mouseup="$refs.input_field.focus()">
-    <input
-      v-if="edit"
-      v-model="player_name"
-      @blur="change_name"
-      @keyup.enter="change_name"
-      
-      ref="input_field"
-      type="text"
-      class="form-control"
-    />
+    <form v-if="edit" @submit="change_name">
+      <input
+        @blur="change_name"
+        v-model="player_name"
+        ref="input_field"
+        type="text"
+        class="form-control"
+      />
+    </form>
     <span v-else @mousedown="edit=true">{{ player_name }}</span>
   </div>
 </template>
