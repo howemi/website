@@ -50,9 +50,9 @@ export default {
   data() {
     return {
       edit: false,
-      players: [],
-      rounds: [],
-      scores: []
+      players: this.$store.state.players,
+      rounds: this.$store.state.rounds,
+      scores: this.$store.state.scores
     };
   },
   computed: {
@@ -62,19 +62,19 @@ export default {
   },
   methods: {
     add_player() {
-      this.scores.push([]);
-      this.players.push(this.players.length + 1);
+      this.$store.state.scores.push([]);
+      this.$store.state.players.push(this.$store.state.players.length + 1);
     },
     remove_player(index) {
-      this.players.splice(index, 1);
-      this.scores.splice(index, 1);
+      this.$store.state.players.splice(index, 1);
+      this.$store.state.scores.splice(index, 1);
     },
     add_round() {
       this.rounds.push(this.rounds.length + 1);
     },
     total(index) {
       let total = 0;
-      this.scores[index].forEach(item => {
+      this.$store.state.scores[index].forEach(item => {
         total += parseInt(item);
       });
       return total;

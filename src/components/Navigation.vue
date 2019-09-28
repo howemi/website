@@ -30,9 +30,9 @@
           <b-nav-item>
             <router-link to="/scorecard">Scorecard</router-link>
           </b-nav-item>
-          <b-nav-item>
+          <!-- <b-nav-item>
             <router-link to="/credits">ALL THE CREDIT</router-link>
-          </b-nav-item>
+          </b-nav-item> -->
           <div class="mr-5"></div>
           <b-nav-item-dropdown text="Region" right>
             <b-dropdown-item

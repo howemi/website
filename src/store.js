@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    language: "EN"
+    language: "EN",
+    players: [],
+    rounds: [],
+    scores: []
   },
   mutations: {
     mutateStateField(state, payload) {
