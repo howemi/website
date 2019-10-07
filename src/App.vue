@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="mode">
     <Navigation/>
     <div class="spacer"></div>
     <router-view class="test"/>
@@ -23,6 +23,15 @@ export default {
     } else  {
       document.title = "Good Evening"
     }
+  },
+  computed: {
+    mode: function() {
+      if(this.$store.state.mode == "dark") {
+        return "dark"
+      } else {
+        return ""
+      }
+    }
   }
 
 }
@@ -33,12 +42,20 @@ export default {
 h1 {
   font-family: 'Arvo';
 }
+
+
 #app {
   font-family: 'Montserrat', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
+}
+
+#app.dark {
+  background-color: rgb(42, 42, 42);
+  color:white;
 }
 
 .spacer {

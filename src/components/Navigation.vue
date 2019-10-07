@@ -30,9 +30,12 @@
           <b-nav-item>
             <router-link to="/scorecard">Scorecard</router-link>
           </b-nav-item>
+          <b-nav-item>
+            <button class="btn btn-sm btn-warning" @click="toggleMode()">{{mode}}</button>
+          </b-nav-item>
           <!-- <b-nav-item>
             <router-link to="/credits">ALL THE CREDIT</router-link>
-          </b-nav-item> -->
+          </b-nav-item>-->
           <div class="mr-5"></div>
           <b-nav-item-dropdown text="Region" right>
             <b-dropdown-item
@@ -55,9 +58,21 @@ export default {
       current_scroll: 0
     };
   },
+  computed: {
+    mode() {
+      return this.$store.state.mode;
+    }
+  },
   methods: {
     change_lang(lang) {
       this.$store.commit("mutateStateField", { language: lang });
+    },
+    toggleMode() {
+      if (this.$store.state.mode == "dark") {
+        this.$store.state.mode = "light";
+      } else {
+        this.$store.state.mode = "dark";
+      }
     },
     mesid() {
       let diff = window.scrollY - this.current_scroll;

@@ -101,6 +101,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .header-top {
   top: -1px;
   z-index: 20;
+  min-width: 70px;
 }
 .header-bottom {
   bottom: 0px;

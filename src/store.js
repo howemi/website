@@ -8,7 +8,8 @@ export default new Vuex.Store({
     language: "EN",
     players: [],
     rounds: [],
-    scores: []
+    scores: [],
+    mode:"dark",
   },
   mutations: {
     mutateStateField(state, payload) {
