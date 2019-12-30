@@ -1,5 +1,5 @@
 <template>
-  <div @mouseup="$refs.input_field.focus()">
+  <div @mouseup="$refs.input_field.select()">
     <form v-if="edit" @submit="change_name">
       <input
         @blur="change_name"
