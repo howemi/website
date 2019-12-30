@@ -35,7 +35,7 @@ export default {
     }
   },
   mounted: function() {
-    this.$refs.input_field.focus();
+    this.$refs.input_field.select();
   },
 };
 </script>
