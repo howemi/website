@@ -80,8 +80,10 @@ export default {
       return total;
     },
     focus_next($event, col, row) {
-      console.log(col);
-      console.log(row);
+      col
+      row
+      // console.log(col);
+      // console.log(row);
     }
   }
 };
