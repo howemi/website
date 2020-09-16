@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Scorecard</h1>
     <b-container class="px-0">
       <table class="table">
         <thead class="thead-dark">

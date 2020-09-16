@@ -1,15 +1,15 @@
 <template>
   <div class="hello">
     <div v-if="$store.state.language === 'DK'">
-      <img class="flag my-3" src="../assets/flags/DK.svg">
+      <img class="flag my-3" src=".${publicPath}/assets/flags/DK.svg">
       <h1>Hej</h1>
     </div>
     <div v-else-if="$store.state.language === 'EN'">
-      <img class="flag my-3" src="../assets/flags/EN.svg">
+      <img class="flag my-3" src=".${publicPath}/assets/flags/EN.svg">
       <h1>Hello</h1>
     </div>
     <div v-else-if="$store.state.language === 'ES'">
-      <img class="flag my-3" src="../assets/flags/ES.svg">
+      <img class="flag my-3" :src="${publicPath}/assets/flags/ES.svg">
       <h1>Hola</h1>
     </div>
 
@@ -22,6 +22,11 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      publicPath: "./scorecard/"
+    }
   },
   computed: {
     language: function() {
